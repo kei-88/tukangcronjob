@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Short Link Not Found</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Courier New', monospace;
+      background: linear-gradient(135deg, #000814 0%, #001d3d 100%);
+      color: #00d9ff;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Subtle grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 217, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 217, 255, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .container {
+      text-align: center;
+      z-index: 1;
+      position: relative;
+    }
+
+    .error-code {
+      font-size: 120px;
+      font-weight: bold;
+      color: #ff4444;
+      text-shadow: 0 0 30px rgba(255, 68, 68, 0.5);
+      margin-bottom: 20px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .error-title {
+      font-size: 32px;
+      color: #00d9ff;
+      margin-bottom: 15px;
+      text-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
+    }
+
+    .error-message {
+      font-size: 18px;
+      color: rgba(0, 217, 255, 0.7);
+      margin-bottom: 30px;
+    }
+
+    .short-code {
+      font-family: 'Courier New', monospace;
+      background: rgba(0, 217, 255, 0.1);
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 217, 255, 0.3);
+      color: #00d9ff;
+      font-size: 16px;
+      margin-bottom: 30px;
+      display: inline-block;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      border: 2px solid #00d9ff;
+      background: transparent;
+      color: #00d9ff;
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 217, 255, 0.2);
+      transition: left 0.3s;
+    }
+
+    .btn:hover {
+      background: rgba(0, 217, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 217, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary {
+      background: rgba(0, 217, 255, 0.1);
+    }
+
+    .btn-secondary {
+      border-color: rgba(0, 217, 255, 0.5);
+      color: rgba(0, 217, 255, 0.7);
+      margin-left: 15px;
+    }
+
+    .btn-secondary:hover {
+      border-color: #00d9ff;
+      color: #00d9ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="error-code">404</div>
+    <div class="error-title">Short Link Not Found</div>
+    <div class="error-message">
+      The short link you're looking for doesn't exist or has been deactivated.
+    </div>
+    
+    <% if (typeof shortCode !== 'undefined') { %>
+      <div class="short-code">Code: <%= shortCode %></div>
+    <% } %>
+    
+    <div>
+      <a href="/shortener" class="btn btn-primary">Create New Link</a>
+      <a href="/dashboard" class="btn btn-secondary">Go to Dashboard</a>
+    </div>
+  </div>
+</body>
+</html>

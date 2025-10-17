@@ -6,6 +6,9 @@ const path = require('path');
 const cron = require('node-cron');
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
+// Import routes
+const shortenerRoutes = require('./routes/shortener');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -138,5 +141,10 @@ app.post('/logout', (req, res) => {
     res.redirect('/login');
   });
 });
+
+// ======================
+// URL Shortener Routes
+// ======================
+app.use('/', shortenerRoutes);
 
 app.listen(PORT, () => console.log(`✅ Cron server jalan di http://localhost:${PORT}`));

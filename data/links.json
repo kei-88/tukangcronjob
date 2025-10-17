@@ -1,0 +1,28 @@
+{
+  "links": [
+    {
+      "id": "BMBu-x0b2AJr90V4rxQLw",
+      "shortCode": "qCBDQe",
+      "destinationUrl": "https://google.com",
+      "isNawalaBlocked": true,
+      "blockCategory": "dns_not_found",
+      "checkStatus": "blocked",
+      "lastCheckedAt": "2025-10-17T11:31:50.703Z",
+      "createdAt": "2025-10-17T11:31:50.703Z",
+      "clickCount": 1,
+      "isActive": false
+    },
+    {
+      "id": "hoow7mydr3nD255jiNF17",
+      "shortCode": "BTQZmC",
+      "destinationUrl": "https://google.com/",
+      "isNawalaBlocked": true,
+      "blockCategory": "dns_not_found",
+      "checkStatus": "blocked",
+      "lastCheckedAt": "2025-10-17T11:33:24.407Z",
+      "createdAt": "2025-10-17T11:33:24.407Z",
+      "clickCount": 1,
+      "isActive": true
+    }
+  ]
+}
