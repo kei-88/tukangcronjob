@@ -8,8 +8,10 @@ const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fet
 
 // Import routes
 const shortenerRoutes = require('./routes/shortener');
+const seoToolsRoutes = require('./routes/seoTools');
 
 const app = express();
+app.set('trust proxy', true); // ← ADD THIS LINE
 const PORT = process.env.PORT || 3000;
 
 // ======================
@@ -18,6 +20,8 @@ const PORT = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 
 // Serve static files (videos, images, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
@@ -34,6 +38,8 @@ const loginLimiter = rateLimit({
   windowMs: 60 * 1000,
   max: 6,
   message: 'Terlalu sering login bro, tunggu bentar.',
+  skip: (req) => req.path.startsWith('/.well-known/'),
+  keyGenerator: (req) => req.ip || 'fallback',
 });
 
 function requireAuth(req, res, next) {
@@ -146,5 +152,10 @@ app.post('/logout', (req, res) => {
 // URL Shortener Routes
 // ======================
 app.use('/', shortenerRoutes);
+
+// ======================
+// SEO Tools Routes
+// ======================
+app.use('/', seoToolsRoutes);
 
 app.listen(PORT, () => console.log(`✅ Cron server jalan di http://localhost:${PORT}`));
